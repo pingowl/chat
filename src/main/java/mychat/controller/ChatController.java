@@ -51,11 +51,17 @@ public class ChatController {
     }
 
     @MessageMapping("/chat/sendMessage")
-    public void sendMessage(@Payload Chat chat) {
+    public String sendMessage(@Payload Chat chat) {
         log.info("CHAT {}", chat);
         chat.setId(UUID.randomUUID().toString());
-        template.convertAndSend("/sub/chat/room/" + chat.getRoomId(), chat);
+        String roomId = chat.getRoomId();
+        template.convertAndSend("/sub/chat/room/" + roomId, chat);
         chatService.saveMessage(chat);
+        if(chatRoomService.addChatCntAndReturn(roomId)){
+            chatService.makeBook(roomId);
+            return "fin";
+        }
+        return "";
     }
 
     @EventListener

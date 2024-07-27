@@ -60,6 +60,7 @@ public class ChatService {
                 .createdAt(LocalDateTime.ofInstant(instance, ZoneId.of("Asia/Seoul")))
                 .build();
         bookRepository.save(book);
+        log.info("[Book 생성] {}", book.getId());
     }
 
     public void mongoInsert(){

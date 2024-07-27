@@ -72,4 +72,16 @@ public class ChatRoomService {
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_CHATROOM));
         room.setFirstSentence(firstSentence);
     }
+
+    public boolean addChatCntAndReturn(String roomId){
+        ChatRoom room = chatRoomRepository.findById(roomId)
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_CHATROOM));
+        int cnt = room.addChatCnt();
+        chatRoomRepository.save(room);
+        if(cnt >= room.getUserCount()){
+            room.setAsDone();
+            return true;
+        }
+        return false;
+    }
 }

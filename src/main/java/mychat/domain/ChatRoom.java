@@ -27,6 +27,8 @@ public class ChatRoom {
     @Builder.Default
     private boolean done=false;
     private String firstSentence;
+    @Builder.Default
+    private int chatCnt=0;
 
     // 채팅방 삭제시 방장이 비밀번호 입력해야함
 
@@ -60,5 +62,10 @@ public class ChatRoom {
 
     public void setFirstSentence(String firstSentence){
         this.firstSentence = firstSentence;
+    }
+
+    public int addChatCnt(){
+        chatCnt++;
+        return chatCnt;
     }
 }
