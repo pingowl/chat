@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -84,4 +85,12 @@ public class ChatRoomService {
         }
         return false;
     }
+
+    public List<ChatRoom> getMyActiveChatRoom(String username){
+        List<ChatRoom> cc = chatRoomRepository.findByDone(false);
+        return chatRoomRepository.findByDone(false).stream()
+                .filter(cr -> cr.getParticipants().contains(username))
+                .collect(Collectors.toList());
+    }
+
 }

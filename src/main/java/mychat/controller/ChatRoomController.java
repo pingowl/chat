@@ -45,4 +45,9 @@ public class ChatRoomController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @GetMapping("/my-active/{username}")
+    public ResponseEntity<List<ChatRoom>> getMyActiveChatRoom(@PathVariable("username") String username){
+        List<ChatRoom> response = chatRoomService.getMyActiveChatRoom(username);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }
