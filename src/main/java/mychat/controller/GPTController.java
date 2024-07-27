@@ -25,9 +25,8 @@ public class GPTController {
     private String apiUrl;
     private final RestTemplate restTemplate;
 
-
-    @GetMapping("/chat/{roomId}")
-    public String chat(@PathVariable("roomId") String roomId){
+    @GetMapping("/chat")
+    public String chat(){
         String prompt = "릴레이로 소설 작성할건데 소설의 첫 줄 써줄래? 20자 이내로";
 
         GPTRequest request = new GPTRequest(
@@ -51,7 +50,13 @@ public class GPTController {
             sb.append('\n'); // 줄바꿈 추가
         }
         firstSentence = sb.toString();
+        return firstSentence;
 
+    }
+
+    @GetMapping("/chat/{roomId}")
+    public String chat(@PathVariable("roomId") String roomId){
+        String firstSentence = chat();
         chatRoomService.setFirstSentence(roomId, firstSentence);
         return firstSentence;
 
