@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import mychat.domain.Chat;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 
 
 @Service
@@ -19,4 +20,18 @@ public class ChatService {
     private final ChatRepository chatRepository;
     private final MongoTemplate mongoTemplate;
 
+    public void saveMessage(Chat chat) {
+        chatRepository.save(chat);
+    }
+
+    public List<Chat> getChatHistory(String roomId){
+        return chatRepository.findByRoomId(roomId);
+    }
+
+    public void mongoInsert(){
+        Chat chat = new Chat("chat1", "1", "Lee", "내용",
+                System.currentTimeMillis());
+        mongoTemplate.insert(chat);
+    }
 }
+
