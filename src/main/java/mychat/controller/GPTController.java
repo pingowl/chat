@@ -27,7 +27,7 @@ public class GPTController {
 
     @GetMapping("/chat")
     public String chat(){
-        String prompt = "릴레이로 소설 작성할건데 소설의 첫 줄 써줄래? 20자 이내로";
+        String prompt = "릴레이로 소설 작성할건데 소설의 첫 줄 써줄래? 공백포함 전체 11글자 이하로. 길이 제한 꼭 지켜.";
 
         GPTRequest request = new GPTRequest(
                 model,prompt,1,256,1,2,2);
