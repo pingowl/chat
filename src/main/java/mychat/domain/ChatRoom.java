@@ -26,6 +26,7 @@ public class ChatRoom {
     private int maxUserCnt; // 채팅방 최대 인원 제한
     @Builder.Default
     private boolean done=false;
+    private String firstSentence;
 
     // 채팅방 삭제시 방장이 비밀번호 입력해야함
 
@@ -55,5 +56,9 @@ public class ChatRoom {
 
     public void setAsDone(){
         done = true;
+    }
+
+    public void setFirstSentence(String firstSentence){
+        this.firstSentence = firstSentence;
     }
 }

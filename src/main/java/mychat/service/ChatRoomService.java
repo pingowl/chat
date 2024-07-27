@@ -66,4 +66,10 @@ public class ChatRoomService {
     private void deleteChatRoom(String roomId){
         chatRoomRepository.deleteById(roomId);
     }
+
+    public void setFirstSentence(String roomId, String firstSentence){
+        ChatRoom room = chatRoomRepository.findById(roomId)
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_CHATROOM));
+        room.setFirstSentence(firstSentence);
+    }
 }
