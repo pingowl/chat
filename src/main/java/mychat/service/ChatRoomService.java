@@ -49,13 +49,14 @@ public class ChatRoomService {
         log.info("[채팅방 입장] room={}, user={}", room.getId(), username);
     }
 
-    public void disconnectChatRoom(String roomId, String username) {
+    public boolean disconnectChatRoomAndReturnDone(String roomId, String username) {
         ChatRoom room = chatRoomRepository.findById(roomId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_CHATROOM));
         room.deleteParticipant(username);
         chatRoomRepository.save(room);
         log.info("[채팅방 퇴장] room={}, user={}", room.getId(), username);
-        template.convertAndSend("/sub/chat/room/" + room.getId());
+        if(room.getUserCount()==0)  return true;
+        return false;
     }
 
     public List<ChatRoom> getAllChatRooms() {

@@ -59,7 +59,7 @@ public class ChatController {
     }
 
     @EventListener
-    public void webSocketDisconnectListener(SessionDisconnectEvent event) throws InterruptedException {
+    public void webSocketDisconnectListener(SessionDisconnectEvent event) {
         log.info("DisConnEvent {}", event);
 
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
@@ -70,7 +70,9 @@ public class ChatController {
         log.info("headerAccessor {}", headerAccessor);
 
         // 채팅방 유저 리스트에서 유저 닉네임 조회 및 리스트에서 유저 삭제
-        chatRoomService.disconnectChatRoom(roomId, username);
+        if(chatRoomService.disconnectChatRoomAndReturnDone(roomId, username)) {
+            chatService.makeBook(roomId);
+        }
         log.info("User Disconnected : " + username);
 
         Chat chat = Chat.builder()

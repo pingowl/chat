@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mychat.domain.Chat;
+import mychat.domain.Book;
 import mychat.domain.ChatRoom;
 import mychat.dto.response.IdResponse;
 import mychat.service.ChatRoomService;
@@ -45,12 +45,4 @@ public class ChatRoomController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    // 채팅내역 조회
-    @GetMapping("/chat/{roomId}")
-    public ResponseEntity<List<Chat>> getChatHistory(@PathVariable("roomId") String roomId) {
-        chatRoomService.findRoomById(roomId);
-        List<Chat> response = chatService.getChatHistory(roomId);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
-    }
 }
-

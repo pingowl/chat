@@ -30,6 +30,7 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
         registry.enableSimpleBroker("/sub"); // /sub/room/{roomNo}로 주제 구독 가능
         // 메시지를 발행하는 요청 url
         registry.setApplicationDestinationPrefixes("/pub"); // /pub/room/{roomNo} 로 메시지 전송 컨트롤러 라우팅 가능
+        registry.setUserDestinationPrefix("/user");
     }
 
     // STOMP에서 64KB 이상의 데이터 전송을 못하는 문제 해결

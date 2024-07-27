@@ -6,3 +6,5 @@ spring:
     mongodb:
       uri: ${spring.data.mongodb.uri}
       database: chat-db
+  websocket:
+    default-destination: /sub/default

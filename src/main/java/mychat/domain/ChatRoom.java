@@ -1,9 +1,9 @@
 package mychat.domain;
 
-
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +44,7 @@ public class ChatRoom {
         if(!participants.contains(username)) return false;
         participants.remove(username);
         userCount--;
+        if(userCount==0) done=true;
         return true;
     }
 
@@ -52,4 +53,7 @@ public class ChatRoom {
         return false;
     }
 
+    public void setAsDone(){
+        done = true;
+    }
 }
