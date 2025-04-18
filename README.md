@@ -1,5 +1,5 @@
 # [아무말] 릴레이 소설 채팅 서비스
-- 연합 해커톤 "[하지톤](https://github.com/hajithon)" ([GDSC Hongik](https://github.com/GDSC-Hongik) X [HYPHEN](https://www.instagram.com/hyphen_hivcd))  대상 수상작
+- 연합 해커톤 "[하지톤](https://github.com/hajithon)" ([GDSC](https://github.com/GDSC-Hongik) X [HYPHEN](https://www.instagram.com/hyphen_hivcd))  대상 수상작
 - 개발 기간
   - 해커톤 기간 : 2024.7.27-7.28
   - 리팩토링 기간 : 2024.7.29 ~
